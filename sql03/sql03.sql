@@ -3,13 +3,16 @@
 문제 1. 
 각 사원(employee)에 대해서 사번(employee_id), 이름(first_name), 부서명(department_name), 
 매니저(manager)의 이름(first_name)을 조회하세요.*/
-select emp.employee_id,
-        emp.first_name,
-        department_name,
-        man.first_name manager
-from employees emp, employees man, departments dep
-where emp.manager_id=man.employee_id(+)
-and emp.department_id=dep.department_id(+);
+select emp.employee_id "사원 아이디",
+        emp.first_name "사원 이름",
+        dep.department_name "부서",
+        man.first_name "매니저이름"
+from departments dep, employees emp left outer join employees man
+on emp.manager_id=man.employee_id
+where emp.department_id=dep.department_id;
+--매니저가 없는 사원 존재함. null 표시를 위해, 왼쪽을 기준으로 조인한다.
+select manager_id        
+from employees;
 
 /*문제2.
 지역(regions)에 속한 나라들을 지역이름(region_name), 나라이름(country_name)으로 출력하되 
