@@ -28,7 +28,7 @@ order by region_name desc, country_name desc;
 매니저(manager)의 이름(first_name), 위치(locations)한 도시(city), 나라(countries)의 
 이름(countries_name) 그리고 지역구분(regions)의 이름(resion_name)까지 전부 출력해 보세요.
 //11개*/
-
+--매니저 있는 부서만 출력.
 select  dep.department_id "부서번호",
         dep.department_name "부서이름",
         emp.first_name "매니저이름",
@@ -37,6 +37,18 @@ select  dep.department_id "부서번호",
         region_name "지역이름"
 from departments dep, employees emp, locations loc, countries coun, regions reg
 where dep.manager_id = emp.employee_id
+and dep.location_id=loc.location_id
+and loc.country_id=coun.country_id
+and coun.region_id=reg.region_id;
+
+select  dep.department_id "부서번호",
+        dep.department_name "부서이름",
+        emp.first_name "매니저이름",
+        city "도시이름",
+        country_name "나라이름",
+        region_name "지역이름"
+from departments dep, employees emp, locations loc, countries coun, regions reg
+where dep.manager_id = emp.employee_id(+) --매니저 없는 부서도 출력하는 경우 이렇게 적어주어야 한다.
 and dep.location_id=loc.location_id
 and loc.country_id=coun.country_id
 and coun.region_id=reg.region_id;
