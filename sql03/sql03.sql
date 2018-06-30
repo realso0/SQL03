@@ -14,6 +14,14 @@ where emp.department_id=dep.department_id;
 select manager_id        
 from employees;
 
+select emp.employee_id "사원 아이디",
+        emp.first_name "사원 이름",
+        dep.department_name "부서",
+        man.first_name "매니저이름"
+from departments dep, employees emp, employees man
+where emp.manager_id=man.employee_id(+)
+and emp.department_id=dep.department_id;
+
 /*문제2.
 지역(regions)에 속한 나라들을 지역이름(region_name), 나라이름(country_name)으로 출력하되 
 지역이름, 나라이름 순서대로 내림차순으로 정렬하세요.//25개국*/
@@ -70,7 +78,7 @@ and jo.job_title='Public Accountant';
 select employee_id,
         first_name,
         last_name,
-        department_name
+        department_namesadfasdf
 from employees emp, departments dep
 where emp.department_id=dep.department_id
 order by last_name asc;
